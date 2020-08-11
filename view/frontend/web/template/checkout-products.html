@@ -1,0 +1,39 @@
+<div class="page-products">
+    <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <!-- ko foreach: { data: products, as: 'product' } -->
+            <li class="item product product-item">
+                <div class="product-item-info" data-container="product-grid">
+                    <div class="product details product-item-details">
+                        <strong class="product name product-item-name">
+                            <span data-bind="text: product.name"></span>
+                        </strong>
+                        <div class="price-box price-final_price" data-role="priceBox">
+                            <span class="price-container price-final_price tax weee">
+                                <span data-price-type="finalPrice" class="price-wrapper ">
+                                    <span class="price"><span data-bind="text: $parent.getFormattedPrice.bind($data, product.price)()"></span></span>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions">
+                                <div class="actions-primary">
+                                    <form data-bind="attr: {action: $parent.getUrl.bind($data, product.id, $parent.uenc)()}" method="post">
+                                        <input type="hidden" name="product" ko-value="product.id">
+                                        <input type="hidden" name="uenc" ko-value="$parent.uenc">
+                                        <input type="hidden" name="form_key" ko-value="$parent.formKey">
+                                        <input name="qty" value="1" type="number">
+                                        <button type="submit" title="Add to Cart" class="action tocart primary">
+                                            <span><!-- ko i18n: 'Add to Cart'--><!-- /ko --></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ol>
+    </div>
+</div>
